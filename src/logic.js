@@ -27,17 +27,14 @@ export async function fetchData (url){
       console.log(data.currentConditions.sunset);
     
     const location = data.address;
-    const time = data.currentConditions.datetime;
     const feelsLike = data.currentConditions.feelslike;
     const humidity = data.currentConditions.humidity;
     const conditions = data.currentConditions.conditions;
     const sunrise = data.currentConditions.sunrise;
     const sunset = data.currentConditions.sunset;
-
-
+    
      return {
         location,
-        time, 
         feelsLike,
         humidity,
         conditions,
