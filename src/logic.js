@@ -2,7 +2,6 @@
 export function createUrl (city) {
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/today?unitGroup=us&key=SRJBDRP83HWD6GER6HMCFK5KG&contentType=json` 
 
-    console.log(url)
     return {
         url,
     }
@@ -27,7 +26,7 @@ export async function fetchData (url){
       console.log(data.currentConditions.sunset);
     
     const location = data.address;
-    const feelsLike = data.currentConditions.feelslike;
+    const feelslike = data.currentConditions.feelslike;
     const humidity = data.currentConditions.humidity;
     const conditions = data.currentConditions.conditions;
     const sunrise = data.currentConditions.sunrise;
@@ -35,10 +34,32 @@ export async function fetchData (url){
     
      return {
         location,
-        feelsLike,
+        feelslike,
         humidity,
         conditions,
         sunrise,
         sunset,
       }
+}
+
+
+export async function main(url) {
+  const weather = await fetchData(url); 
+
+  // Grab the DOM elements
+  const locationEl = document.querySelector(".location");
+  const conditionsEl = document.querySelector(".conditions");
+  const feelslikeEl = document.querySelector(".feels-like");
+  const humidityEl = document.querySelector(".humidity");
+  const sunriseEl = document.querySelector(".sunrise");
+  const sunsetEl = document.querySelector(".sunset");
+    
+    // Update DOM with weather data
+ console.log(weather.feelslike)
+  locationEl.textContent = `City: ${weather.location}`;
+  conditionsEl.textContent = `Conditions: ${weather.conditions}`;
+  feelslikeEl.textContent = `Feels like: ${weather.feelslike}`;
+  humidityEl.textContent = `Humidity: ${weather.humidity}%`;
+  sunriseEl.textContent = `Sunrise: ${weather.sunrise}`;
+  sunsetEl.textContent = `Sunset: ${weather.sunset}`;
 }
