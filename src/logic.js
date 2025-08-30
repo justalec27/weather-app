@@ -7,9 +7,21 @@ export function createUrl (city) {
     }
 }
 
+export function startLoading () {
+    const loader = document.querySelector(".loader")
+    loader.textContent = "Loading"
+}
+
+export function finishLoading () {
+    const loader = document.querySelector(".loader")
+    loader.textContent = ""
+}
 
 //Fetch data from API
 export async function fetchData (url){
+    startLoading()
+    
+
     try {
     const response = await fetch(url, {mode: 'cors'});
     const data = await response.json();
@@ -29,6 +41,8 @@ export async function fetchData (url){
     let conditions = data.currentConditions.conditions;
     let sunrise = data.currentConditions.sunrise;
     let sunset = data.currentConditions.sunset;
+
+    finishLoading()
     
      return {
         location,
@@ -49,9 +63,11 @@ export async function fetchData (url){
             sunset: "-", 
       };
     };
+    
 };
 
 
+// Display data on screen
 export async function displayData(url) {
   const weather = await fetchData(url); 
 
@@ -64,7 +80,6 @@ export async function displayData(url) {
   const sunsetEl = document.querySelector(".sunset");
     
     // Update DOM with weather data
- console.log(weather.feelslike)
   locationEl.textContent = `City: ${weather.location}`;
   conditionsEl.textContent = `Conditions: ${weather.conditions}`;
   feelslikeEl.textContent = `Feels like: ${weather.feelslike}`;
