@@ -1,11 +1,7 @@
-/* * {
-  border: 1px solid red;
-} */
-
 
 html, body {
   background-color: black;
-  color: white;
+  color: #CCCCCC;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -83,6 +79,7 @@ header {
 .location {
   font-size: 40px;
   font-weight: bold;
+  color: white;
 }
 
 .conditions {
@@ -92,17 +89,14 @@ header {
 
 .feels-like {
    font-size: 30px;
-  font-weight: bold;
 }
 
 .humidity {
   font-size: 30px;
-  font-weight: bold;
 }
 
 .sunrise {
   font-size: 30px;
-  font-weight: bold;
 }
 
 .sunset {

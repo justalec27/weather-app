@@ -23,15 +23,6 @@ export async function fetchData (url){
     startLoading()
     const response = await fetch(url, {mode: 'cors'});
     const data = await response.json();
-
-    //   console.log(data);
-    //   console.log(data.address);
-    //   console.log(data.currentConditions.datetime)
-    //   console.log(data.currentConditions.feelslike);
-    //   console.log(data.currentConditions.humidity);
-    //   console.log(data.currentConditions.conditions);
-    //   console.log(data.currentConditions.sunrise);
-    //   console.log(data.currentConditions.sunset);
     
     let location = data.address;
     let feelslike = data.currentConditions.feelslike;
