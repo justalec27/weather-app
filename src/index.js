@@ -1,5 +1,5 @@
 import "./styles.css"
-import { createUrl,fetchData, main } from "./logic";
+import { createUrl,fetchData, displayData } from "./logic";
 /*
 Info needed from the api:
 address
@@ -21,7 +21,7 @@ submit.addEventListener("click", (event) => {
     console.log(city)
     const url = createUrl(city).url
     console.log(url)
-    main(url)
+    displayData(url)
 
     document.getElementById("search").value= ""
 })

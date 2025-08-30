@@ -10,27 +10,25 @@ export function createUrl (city) {
 
 //Fetch data from API
 export async function fetchData (url){
-    const response = await fetch(
-         url, 
-        {mode: 'cors'});
-
+    try {
+    const response = await fetch(url, {mode: 'cors'});
     const data = await response.json();
 
-      console.log(data);
-      console.log(data.address);
-      console.log(data.currentConditions.datetime)
-      console.log(data.currentConditions.feelslike);
-      console.log(data.currentConditions.humidity);
-      console.log(data.currentConditions.conditions);
-      console.log(data.currentConditions.sunrise);
-      console.log(data.currentConditions.sunset);
+    //   console.log(data);
+    //   console.log(data.address);
+    //   console.log(data.currentConditions.datetime)
+    //   console.log(data.currentConditions.feelslike);
+    //   console.log(data.currentConditions.humidity);
+    //   console.log(data.currentConditions.conditions);
+    //   console.log(data.currentConditions.sunrise);
+    //   console.log(data.currentConditions.sunset);
     
-    const location = data.address;
-    const feelslike = data.currentConditions.feelslike;
-    const humidity = data.currentConditions.humidity;
-    const conditions = data.currentConditions.conditions;
-    const sunrise = data.currentConditions.sunrise;
-    const sunset = data.currentConditions.sunset;
+    let location = data.address;
+    let feelslike = data.currentConditions.feelslike;
+    let humidity = data.currentConditions.humidity;
+    let conditions = data.currentConditions.conditions;
+    let sunrise = data.currentConditions.sunrise;
+    let sunset = data.currentConditions.sunset;
     
      return {
         location,
@@ -39,11 +37,22 @@ export async function fetchData (url){
         conditions,
         sunrise,
         sunset,
-      }
-}
+      };
+    } catch {
+        alert("The location is unknow. Try again")
+        return {
+            location: "Unknown",
+            feelslike: "-",
+            humidity: "-",
+            conditions: "-", 
+            sunrise: "-",
+            sunset: "-", 
+      };
+    };
+};
 
 
-export async function main(url) {
+export async function displayData(url) {
   const weather = await fetchData(url); 
 
   // Grab the DOM elements
