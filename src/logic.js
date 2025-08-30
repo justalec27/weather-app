@@ -9,20 +9,18 @@ export function createUrl (city) {
 
 export function startLoading () {
     const loader = document.querySelector(".loader")
-    loader.textContent = "Loading"
+    loader.style.visibility = "visible"
 }
 
 export function finishLoading () {
     const loader = document.querySelector(".loader")
-    loader.textContent = ""
+    loader.style.visibility = "hidden"
 }
 
 //Fetch data from API
 export async function fetchData (url){
-    startLoading()
-    
-
     try {
+    startLoading()
     const response = await fetch(url, {mode: 'cors'});
     const data = await response.json();
 
@@ -53,6 +51,7 @@ export async function fetchData (url){
         sunset,
       };
     } catch {
+        finishLoading()
         alert("The location is unknow. Try again")
         return {
             location: "Unknown",
@@ -82,7 +81,7 @@ export async function displayData(url) {
     // Update DOM with weather data
   locationEl.textContent = `City: ${weather.location}`;
   conditionsEl.textContent = `Conditions: ${weather.conditions}`;
-  feelslikeEl.textContent = `Feels like: ${weather.feelslike}`;
+  feelslikeEl.textContent = `Feels like: ${weather.feelslike} degrees`;
   humidityEl.textContent = `Humidity: ${weather.humidity}%`;
   sunriseEl.textContent = `Sunrise: ${weather.sunrise}`;
   sunsetEl.textContent = `Sunset: ${weather.sunset}`;
